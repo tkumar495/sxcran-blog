@@ -1,0 +1,19 @@
+{% load static %}
+<!doctype html>
+<html>
+	<head>
+		<title>
+			SUCCESS
+		</title>
+	</head>
+	<body>
+		SUCCESS. 
+		<br>
+		{% if link == "login" %}
+		Click <a href="{% url 'login'  %}"> here </a> {{message}}
+		{%endif%}
+		{% if link == "home" %}
+		Click <a href="{% url 'home'  %}"> here </a> {{message}}
+		{%endif%}
+	</body>
+</html>

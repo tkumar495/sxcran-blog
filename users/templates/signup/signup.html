@@ -1,0 +1,78 @@
+{%load static%}
+<!doctype html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<link rel="stylesheet" type="text/css" href="{% static 'signup/signup.css' %}"/>
+		<title>
+			SXCRAN ORG - SIGNUP
+		</title>
+	</head>
+	<body>
+		<div class="body">
+			<form action = "{% url 'signup' %}" method="post">
+				{%csrf_token%}
+				<table>
+					<tr>
+						<th id="table_header">
+							SIGNUP
+						</th>
+					</tr>
+					<tr>
+						<td class="table_contents">
+							ROLL NO
+						</td>
+						<td class="table_contents">
+							<input name ="USERNAME" type="text" maxlength="12" size="25" required class="table_input">
+						</td>
+					</tr>
+					<tr>
+						<td class="table_contents">
+							FIRST NAME 
+						</td>
+						<td class="table_contents">
+							<input name = "FIRST_NAME" type="text" maxlength="20" size="25" required class="table_input">
+						</td>
+					<tr>
+						<td class="table_contents">
+							LAST NAME 
+						</td>
+						<td class="table_contents">
+							<input name = "LAST_NAME" type="text" maxlength="20" size="25" required class="table_input">
+						</td>
+					</tr>
+					<tr>
+						<td class="table_contents">
+							EMAIL
+						</td>
+						<td class="table_contents">
+							<input name = "EMAIL" type="email" size="25" required class="table_input"v>
+						</td>
+					<tr>
+						<td class="table_contents">
+							PASSWORD 
+						</td>
+						<td class="table_contents">
+							<input name = "PASSWORD" type="password" size="25" maxlength="16" required class="table_input">
+						</td>
+					<tr>
+						<td class="table_contents">
+							PASSWORD AGAIN 
+						</td>
+						<td class="table_contents">
+							<input type="password" size="25" size="25" maxlength="16" required class="table_input">
+						</td>
+					</tr>
+					<tr>
+						<td class="table_button">
+							<input type="submit" value="SIGNUP">
+						</td>
+						<td class="table_button">
+							<input type="reset" value="CLEAR">
+						</td>
+					</tr>
+					</table>
+			</form>
+		</div>
+	</body>
+</html>

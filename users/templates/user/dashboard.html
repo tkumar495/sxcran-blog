@@ -1,0 +1,62 @@
+{% load static %}
+<!doctype html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<link rel="stylesheet" type="text/css" href="{%static 'user/dashboard.css'%}"/>
+		<title>
+			Dashboard
+		</title>
+	</head>
+	<body>
+		<div class="flex-header">
+			<div> 
+				<a href="{% url 'dashboard' %}"> 
+					SXCRAN BLOG 
+				</a>
+			</div>
+			<div id="searchbar"> 
+				<form action="" method="post"> 
+					<input type="text" name="searchbox" size="50"/>
+					<input type="submit" name="search" value="Search"/>
+				</form> 
+			</div>
+			<div>
+				<a href="{% url 'makepost' %}"> 
+					CREATE POST
+				</a>
+			</div>
+			<div>
+				<a href="{% url 'dashboard' %}"> 
+					NOTIFICATIONS
+				</a>
+			</div>
+			<div> 
+				<a href="{% url 'profile' %}"> 
+					PROFILE
+				</a>
+			</div>
+			<div>
+				<a href="{% url 'logout' %}"> 
+					LOGOUT
+				</a>
+			</div>
+		</div>
+		<!--<div class="flex-nav">
+			<div> NEW POSTS </div>
+			<div> BOOKMARKED </div>
+			<div> YOUR POSTS </div>
+		</div>
+		-->
+		{% for post in user_posts %}
+		<div style="border-style : solid;border-radius : 8px;border-color: #b5e8ff;">
+			<div class="post_heading">
+			Title :	{{post.post_heading}}
+			</div>
+			<div class="post_body">
+			Body :	{{post.post_body}}
+			</div>
+		</div>
+		{%endfor%}
+	</body>
+</html>

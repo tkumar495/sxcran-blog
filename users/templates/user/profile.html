@@ -1,0 +1,58 @@
+{%load static%}
+<!doctype html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<link rel="stylesheet" type="text/css" href = " {% static 'user/profile.css'%}"/>
+		<title>
+			Profile - {{first_name}} {{last_name}}
+		</title>
+	</head>
+	<body>
+		<div class="flex-header">
+			<div> 
+				<a href="{% url 'dashboard' %}"> 
+					SXCRAN BLOG 
+				</a>
+			</div>
+			<div id="searchbar"> 
+				<form action="" method="post"> 
+					<input type="text" name="searchbox" size="50"/>
+					<input type="submit" name="search" value="Search"/>
+				</form> 
+			</div>
+			<div>
+				<a href="{% url 'makepost' %}"> 
+					CREATE POST
+				</a>
+			</div>
+			<div>
+				<a href="{% url 'dashboard' %}"> 
+					NOTIFICATIONS
+				</a>
+			</div>
+			<div> 
+				<a href="{% url 'profile' %}"> 
+					PROFILE
+				</a>
+			</div>
+			<div>
+				<a href="{% url 'logout' %}"> 
+					LOGOUT
+				</a>
+			</div>
+		</div>
+		<div class="outer-container">
+			<div>
+				NAME :  {{first_name}} {{last_name}}
+				<br>
+				USERNAME : {{username}}
+				<br>
+				EMAIL : {{email}}
+			</div>
+			<div>
+				<a href="" id="alert"> CHANGE PASSWORD </a>
+			</div>
+		</div>
+	</body>
+</html>

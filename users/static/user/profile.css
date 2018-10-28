@@ -1,0 +1,48 @@
+body {
+	margin : 0;
+}
+a {
+	text-decoration : none;
+	font : black;
+}
+a:visited {
+	text-decoration : none;
+	font : black;
+}
+.flex-header {
+	display : flex;
+	background : #00bfff;
+	flex-wrap : wrap;
+}
+.flex-header > div {
+	padding:1%;
+	font-family : comic sans ms;
+	font-weight: bold;
+}
+.flex-header > div:hover {
+	background : white;
+}
+.flex-nav {
+	display : flex;
+	flex-direction : column;
+	background-color :powderblue;
+	width : 15%;
+}
+.flex-nav > div {
+	padding-left : 30%;
+	padding-top : 2%;
+}
+.outer-container {
+	border-style : solid;
+	border-radius : 8px;
+	border-color: #b5e8ff;
+}
+#alert :link{
+	color : red;
+}
+#alert:visited {
+	color : red;
+}
+#searchbar:hover {
+	background:#00bfff;
+}
