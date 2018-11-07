@@ -1,4 +1,10 @@
 {%load static%}
+<!-- CHANGELOG :
+				v 1.0.0 : +added login page
+						: changed "USERNAME/ROLL NO" to "EXAM ROLL NO"
+						: +added link to signup page
+-->
+<!doctype html>
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -19,7 +25,7 @@
 					</tr>
 					<tr>
 						<td class="table_contents">
-							USERNAME / ROLL 
+							EXAM ROLL NO
 						</td>
 						<td class="table_contents">
 							<input type="text" name="USERNAME" maxlength="12" size="25" required class="table_input">
@@ -42,6 +48,12 @@
 					</tr>
 				</table>
 			</form>
+		</div>
+		<div class="bottom">
+			Don't have memory of this place?
+		</div> 
+		<div class="bottom">
+			Click here to <a href="{% url 'signup' %}"> signup. </a>
 		</div>
 	</body>
 </html>
