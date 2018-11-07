@@ -1,16 +1,23 @@
 {%load static%}
+<!-- CHANGELOG :
+				v 1.0.0 : +added signup page
+						: changed "ROLL NO" to "EXAM ROLL NO"
+						: +added form validation through javascript
+						: +added link to login page
+-->
 <!doctype html>
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 		<link rel="stylesheet" type="text/css" href="{% static 'signup/signup.css' %}"/>
+		<script src="{% static 'signup/signup.js' %}"> </script> 
 		<title>
 			SXCRAN ORG - SIGNUP
 		</title>
 	</head>
 	<body>
 		<div class="body">
-			<form action = "{% url 'signup' %}" method="post">
+			<form name="signupform" action = "{% url 'signup' %}" onsubmit="return validate()" method="post">
 				{%csrf_token%}
 				<table>
 					<tr>
@@ -20,7 +27,7 @@
 					</tr>
 					<tr>
 						<td class="table_contents">
-							ROLL NO
+							EXAM ROLL NO
 						</td>
 						<td class="table_contents">
 							<input name ="USERNAME" type="text" maxlength="12" size="25" required class="table_input">
@@ -60,7 +67,7 @@
 							PASSWORD AGAIN 
 						</td>
 						<td class="table_contents">
-							<input type="password" size="25" size="25" maxlength="16" required class="table_input">
+							<input name = "PASSWORD2" type="password" size="25" size="25" maxlength="16" required class="table_input">
 						</td>
 					</tr>
 					<tr>
@@ -73,6 +80,9 @@
 					</tr>
 					</table>
 			</form>
+		</div>
+		<div class="bottom">
+			Already have an account? Click here to <a href="{% url 'login' %}"> login. </a>
 		</div>
 	</body>
 </html>
