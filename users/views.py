@@ -17,6 +17,9 @@
 #					     +added logout view to free users from their pain
 #						 +added create_posts view to prevent boredom of users from 
 #					      clicking the 4 links on the dashboard.
+#						 +added functionality that redirects users to dashboard if 
+#                         user attempts to view login or signup page after logging in
+#						  
 #//************************************************************************//#
 #//************************************************************************//#
 
@@ -50,23 +53,25 @@ def signup(request):
 		an empty signup form for the user to fill and 
 		send request to create an account. 
 	'''
-	if request.method == 'POST':
-		form = signupform(request.POST)
-		if form.is_valid():
-			user = User.objects.create_user(username = form.cleaned_data['USERNAME'],
-											email = form.cleaned_data['EMAIL'],
-											password = form.cleaned_data['PASSWORD'],)
-			user.first_name = form.cleaned_data['FIRST_NAME']
-			user.last_name = form.cleaned_data['LAST_NAME']
-			user.save()
-			request.session['task'] = "signup"
-			return HttpResponseRedirect(reverse('success'))
+	if not request.user.is_authenticated:
+		if request.method == 'POST':
+			form = signupform(request.POST)
+			if form.is_valid():
+				user = User.objects.create_user(username = form.cleaned_data['USERNAME'],
+												email = form.cleaned_data['EMAIL'],
+												password = form.cleaned_data['PASSWORD'],)
+				user.first_name = form.cleaned_data['FIRST_NAME']
+				user.last_name = form.cleaned_data['LAST_NAME']
+				user.save()
+				request.session['task'] = "signup"
+				return HttpResponseRedirect(reverse('success'))
+			else :
+				return HttpResponseRedirect(reverse('error'))
 		else :
-			return HttpResponseRedirect(reverse('error'))
+			form = signupform()
+		return(render(request,'signup/signup.html'))
 	else :
-		form = signupform()
-	return(render(request,'signup/signup.html'))
-	
+		return HttpResponseRedirect(reverse('dashboard'))
 #//************************************************************************//#
 
 def error(request):
@@ -107,21 +112,24 @@ def success(request):
 def login(request):
 	''' performs user login 
 	'''
-	if request.method == "POST":
-		form = loginform(request.POST)
-		if form.is_valid():
-			username = request.POST['USERNAME']
-			password = request.POST['PASSWORD']
-			user = au.authenticate(username=username, password=password)
-			if (user is not None):
-				au.login(request,user)
-				return HttpResponseRedirect(reverse('dashboard'))
-			else :
-				return HttpResponseRedirect(reverse('login'))
+	if not request.user.is_authenticated:
+		if request.method == "POST":
+			form = loginform(request.POST)
+			if form.is_valid():
+				username = request.POST['USERNAME']
+				password = request.POST['PASSWORD']
+				user = au.authenticate(username=username, password=password)
+				if (user is not None):
+					au.login(request,user)
+					request.session['logged'] = True 
+					return HttpResponseRedirect(reverse('dashboard'))
+				else :
+					return HttpResponseRedirect(reverse('login'))
+		else :
+			form = loginform()
+		return(render(request,'signup/login.html'))
 	else :
-		form = loginform()
-	return(render(request,'signup/login.html'))
-
+		return HttpResponseRedirect(reverse('dashboard'))
 #//************************************************************************//#
 
 def logout(request):
@@ -130,6 +138,7 @@ def logout(request):
 	try :
 		au.logout(request)
 		request.session['task'] = "logout"
+		request.session['logged'] = False
 		return HttpResponseRedirect(reverse('success'))
 	except :
 		pass
