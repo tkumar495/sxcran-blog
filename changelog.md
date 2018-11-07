@@ -25,6 +25,6 @@
 		      :	+added login view to make some use of signup view
 		      :	+added logout view to free users from their pain
 		      :	+added create_posts view to prevent boredom of users from 
-			 clicking the 4 links on the dashboard.
-		      :	+added functionality that redirects users to dashboard if 
-                         user attempts to view login or signup page after logging in
+			clicking the 4 links on the dashboard.
+		      :	+added functionality that redirects users to dashboard if
+                        user attempts to view login or signup page after logging in
