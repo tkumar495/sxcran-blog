@@ -27,4 +27,12 @@
 		      :	+added create_posts view to prevent boredom of users from 
 			clicking the 4 links on the dashboard.
 		      :	+added functionality that redirects users to dashboard if
-                        user attempts to view login or signup page after logging in
+            user attempts to view login or signup page after logging in
+          v 1.0.1 : users now redirect to dashboard instead of home page if they are 
+			logged in.
+### USER.forms.py :
+		  v 1.0.0 : +added signup form to enable user signup 
+            	    +added login form to enable user login
+                    +added postform to enable creating and viewing posts
+### USER.models.py :
+		  v 1.0.0 : +added posts model to store posts and manage them
