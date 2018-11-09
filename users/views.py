@@ -19,7 +19,8 @@
 #					      clicking the 4 links on the dashboard.
 #						 +added functionality that redirects users to dashboard if 
 #                         user attempts to view login or signup page after logging in
-#						  
+#			 #v 1.0.1 : users now redirect to dashboard instead of home page if they are 
+#						logged in.
 #//************************************************************************//#
 #//************************************************************************//#
 
@@ -34,8 +35,12 @@ from .models import posts
 #//************************************************************************//#
 
 def home(request):
-	''' Renders the home.html file to the user
+	''' Renders the home.html file to the user 
+		if the user is not logged in or the dashboard
+		if the user is logged in
 	'''
+	if (request.user.is_authenticated):
+		return HttpResponseRedirect(reverse('dashboard'))
 	return(render(request,'home/home.html'))
 
 #//************************************************************************//#
