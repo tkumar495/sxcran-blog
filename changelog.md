@@ -1,7 +1,7 @@
 # CHANGELOG 
 ### HOME PAGE :
               v 1.0.0 : + added home page
-              
+              v 1.1.0 : + made home page responsive for mobile devices
 ### SIGNUP PAGE :
 	      v 1.0.0 : +added signup page
 		      : changed "ROLL NO" to "EXAM ROLL NO"	
