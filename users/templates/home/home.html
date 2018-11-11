@@ -1,6 +1,7 @@
 {%load static%}
 <!-- CHANGELOG -
 				v 1.0.0 : Added home page
+				v 1.1.0 : Made home page responsive for mobile devices
 -->				
 <!doctype html>
 <html lang="en">
@@ -21,7 +22,7 @@
 		<div class="index">
 			CONNECT
 		</div>
-		<div class="signup">
+		<div class="signup" style="float:left">
 			<a href="{% url 'signup' %}">
 				SIGN UP
 			</a>
@@ -31,11 +32,8 @@
 				LOG IN
 			</a>
 		</div>
-		<br>
-		<div class="footer">
-			THIS SITE IS BEST VIEWED ON DESKTOP COMPUTERS. MOBILE SCREENS WOULD BE SUPPORTED SOON. ALPHA PHASE SUBJECT TO CHANGE.
-			<br>
+		<footer>
 			TO CONTRIBUTE VISIT <a href="https://github.com/chandan00761/sxcran-blog" target="blank"> GITHUB SXCRAN BLOG </a>
-		</div>
+		</footer>
 	</body>
 </html>
