@@ -8,7 +8,7 @@
 <!doctype html>
 <html>
 	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<link rel="stylesheet" type="text/css" href="{% static 'signup/signup.css' %}"/>
 		<script src="{% static 'signup/signup.js' %}"> </script> 
 		<title>
@@ -21,9 +21,9 @@
 				{%csrf_token%}
 				<table>
 					<tr>
-						<th id="table_header">
+						<div id="table_header">
 							SIGNUP
-						</th>
+						</div>
 					</tr>
 					<tr>
 						<td class="table_contents">
@@ -71,18 +71,18 @@
 						</td>
 					</tr>
 					<tr>
-						<td class="table_button">
-							<input type="submit" value="SIGNUP">
+						<td>
+							<input class="table_button" type="submit" value="SIGNUP">
 						</td>
-						<td class="table_button">
-							<input type="reset" value="CLEAR">
+						<td>
+							<input class="table_button" type="reset" value="CLEAR">
 						</td>
 					</tr>
 					</table>
 			</form>
 		</div>
 		<div class="bottom">
-			Already have an account? Click here to <a href="{% url 'login' %}"> login. </a>
+			Already have an account? <br>Click here to <a href="{% url 'login' %}"> login. </a>
 		</div>
 	</body>
 </html>
