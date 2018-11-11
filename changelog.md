@@ -7,6 +7,7 @@
 		      : changed "ROLL NO" to "EXAM ROLL NO"	
 		      : +added form validation through javascript
 		      : +added link to login page
+		      : +added responsiveness
 ### LOGIN PAGE :
 	      v 1.0.0 : +added login page
 	      	      : changed "USERNAME/ROLL NO" to "EXAM ROLL NO"
