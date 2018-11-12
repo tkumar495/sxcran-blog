@@ -3,6 +3,7 @@
 				v 1.0.0 : +added login page
 						: changed "USERNAME/ROLL NO" to "EXAM ROLL NO"
 						: +added link to signup page
+				v 1.1.0 : +added responsiveness
 -->
 <!doctype html>
 <html>
@@ -39,20 +40,21 @@
 							<input type="password" name="PASSWORD" maxlength="16" size="25" required class="table_input">
 						</td>
 					<tr>
-						<td class="table_buttons">
-							<input type="submit" value="LOGIN"> 
+						<td>
+							<input class="table_buttons" type="submit" value="LOGIN"> 
 						</td>
-						<td class="table_buttons">
-							<input type="reset" value="CLEAR">
+						<td>
+							<input class="table_buttons" type="reset" value="CLEAR">
 						</td>
 					</tr>
 				</table>
 			</form>
 		</div>
 		<div class="bottom">
+			<a href=""> Forgot password? </a>
+			<br>
 			Don't have memory of this place?
-		</div> 
-		<div class="bottom">
+			<br>
 			Click here to <a href="{% url 'signup' %}"> signup. </a>
 		</div>
 	</body>
