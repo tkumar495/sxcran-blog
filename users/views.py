@@ -62,13 +62,18 @@ def signup(request):
 		if request.method == 'POST':
 			form = signupform(request.POST)
 			if form.is_valid():
-				user = User.objects.create_user(username = form.cleaned_data['USERNAME'],
-												email = form.cleaned_data['EMAIL'],
-												password = form.cleaned_data['PASSWORD'],)
-				user.first_name = form.cleaned_data['FIRST_NAME']
-				user.last_name = form.cleaned_data['LAST_NAME']
-				user.save()
-				request.session['task'] = "signup"
+				try :
+					user = User.objects.create_user(username = form.cleaned_data['USERNAME'],
+													email = form.cleaned_data['EMAIL'],
+													password = form.cleaned_data['PASSWORD'],
+												)
+					user.first_name = form.cleaned_data['FIRST_NAME']
+					user.last_name = form.cleaned_data['LAST_NAME']
+					user.save()
+					request.session['task'] = "signup" 
+				except (IntegrityError) :
+					request.session['error'] = "duplicate"
+					return HttpResponseRedirect(reverse('error'))
 				return HttpResponseRedirect(reverse('success'))
 			else :
 				return HttpResponseRedirect(reverse('error'))
