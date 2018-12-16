@@ -19,18 +19,24 @@
 #					      clicking the 4 links on the dashboard.
 #						 +added functionality that redirects users to dashboard if 
 #                         user attempts to view login or signup page after logging in
-#			 #v 1.0.1 : users now redirect to dashboard instead of home page if they are 
-#						logged in.
+#			  #v 1.0.1 : users now redirect to dashboard instead of home page if they are 
+#						 logged in.
+#						 +exception handling added for duplicate roll numbers
+#						 +added support for user forgetting their passwords
+#						 +added show_post view to trash the op for its shitty content
+#
 #//************************************************************************//#
 #//************************************************************************//#
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
-from .forms import signupform, loginform, postform
+from .forms import signupform, loginform, postform, resetform, commentform
 from django.contrib.auth.models import User
 import django.contrib.auth as au
+import datetime
 from django.urls import reverse
-from .models import posts
+from .models import posts, comments
+from django.db import IntegrityError
 
 #//************************************************************************//#
 
@@ -65,8 +71,7 @@ def signup(request):
 				try :
 					user = User.objects.create_user(username = form.cleaned_data['USERNAME'],
 													email = form.cleaned_data['EMAIL'],
-													password = form.cleaned_data['PASSWORD'],
-												)
+													password = form.cleaned_data['PASSWORD'],)
 					user.first_name = form.cleaned_data['FIRST_NAME']
 					user.last_name = form.cleaned_data['LAST_NAME']
 					user.save()
@@ -87,6 +92,9 @@ def signup(request):
 def error(request):
 	''' used to return a simple error response if something doesn't go right in views
 	'''
+	error = request.session.get('error')
+	if error == 'duplicate':
+		return HttpResponse('This roll number is already registered is already registered.')
 	return HttpResponse('Something went wrong. Visit the homepage at sxcranblog.org')
 
 #//************************************************************************//#
@@ -173,7 +181,11 @@ def create_posts(request):
 			if request.user.is_authenticated:
 				post = posts.objects.create(post_heading = heading,
 											post_op = request.user,
-											post_body = body)
+											post_body = body,
+											post_time = datetime.datetime.now(),
+											)
+				post.post_op_name = request.user.first_name
+				post.save()
 				return HttpResponseRedirect(reverse('dashboard'))
 			else :
 				return HttpResponseRedirect(reverse('error'))
@@ -200,3 +212,44 @@ def profile(request):
 								})
 	else :
 		return HttpResponseRedirect(reverse('login'))
+
+#//************************************************************************//#
+
+def reset_password(request):
+	''' helps in reseting the password of user
+	'''
+	if request.user.is_authenticated:
+		if request == "POST" :
+			pass
+		else :
+			form = resetform()
+		return render(request, 'user/reset.html')
+	return HttpResponseRedirect(reverse('login'))
+#//************************************************************************//#
+
+def show_post(request, post_id):
+	''' shows the page containing the post and its comments
+	'''
+	if request.method == "POST":
+		if request.user.is_authenticated :
+			pass
+		else :
+			return HttpResponseRedirect(reverse('login'))
+		form = commentform(request.POST)
+		if form.is_valid():
+			body = request.POST['COMMENT_BODY']
+			comment = comments.objects.create(comment_op = request.user,
+											comment_body = body,
+											comment_post = posts.objects.get(id = post_id),
+											comment_time = datetime.datetime.now(),
+											)
+			return redirect(show_post, post_id = post_id)
+		else :
+			return redirect(show_post, post_id = post_id)
+	post = posts.objects.get(id=post_id)
+	try :
+		comment = comments.objects.filter(comment_post = post_id)
+	except :
+		return render(request, 'posts/post.html', {'post' : post, 'post_comments': None})
+	return render(request,'posts/post.html', {'post': post, 'post_comments' : comment})
+#//************************************************************************//#

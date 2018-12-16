@@ -20,17 +20,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-with open('/var/www/secret.txt') as f :
-    SECRET_KEY = f.read()
+with open('D:/secret.txt') as f:
+	SECRET_KEY = f.read() #'v&_u8=t0=i*q_%oknsy^knttz#$vj+9l2r4nraw$j7n13+wtox'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = [
-    'chandanmahto00761.pythonanywhere.com',
-    '.pythonanywhere.com',
-    '*',
-    ]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -123,5 +119,4 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-STATIC_ROOT = '/home/chandanmahto00761/sxcran-blog/static/'
 STATIC_URL = '/static/'

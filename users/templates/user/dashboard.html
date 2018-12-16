@@ -4,59 +4,36 @@
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<link rel="stylesheet" type="text/css" href="{%static 'user/dashboard.css'%}"/>
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<title>
 			Dashboard
 		</title>
 	</head>
-	<body>
-		<div class="flex-header">
-			<div> 
-				<a href="{% url 'dashboard' %}"> 
-					SXCRAN BLOG 
-				</a>
-			</div>
-			<div id="searchbar"> 
-				<form action="" method="post"> 
-					<input type="text" name="searchbox" size="50"/>
-					<input type="submit" name="search" value="Search"/>
-				</form> 
-			</div>
-			<div>
-				<a href="{% url 'makepost' %}"> 
-					CREATE POST
-				</a>
-			</div>
-			<div>
-				<a href="{% url 'dashboard' %}"> 
-					NOTIFICATIONS
-				</a>
-			</div>
-			<div> 
-				<a href="{% url 'profile' %}"> 
-					PROFILE
-				</a>
-			</div>
-			<div>
-				<a href="{% url 'logout' %}"> 
-					LOGOUT
-				</a>
-			</div>
+	<body class="w3-light-grey">
+		<div class="w3-bar w3-blue w3-mobile w3-large w3-border">
+			<a href="{% url 'dashboard' %}" class="w3-bar-item w3-button w3-blue w3-hover-white w3-mobile"> SXCRAN BLOG </a>
+			<input type="text" class="w3-bar-item w3-border w3-input w3-mobile" placeholder="Search..">
+			<a href="#" class="w3-bar-item w3-button w3-blue w3-hover-green w3-mobile"><i class="fa fa-search"></i></a>
+			<a href="{% url 'dashboard' %}" class="w3-bar-item w3-button w3-blue w3-hover-white w3-mobile"> Dashboard </a>
+			<a href="{% url 'dashboard' %}" class="w3-bar-item w3-button w3-blue w3-hover-white w3-mobile"> Notifications </a>
+			<a href="{% url 'profile' %}" class="w3-bar-item w3-button w3-blue w3-hover-white w3-mobile"> Profile </a>
+			<a href="{% url 'logout' %}" class="w3-bar-item w3-button w3-blue w3-hover-white w3-mobile"> Logout </a>
 		</div>
-		<!--<div class="flex-nav">
-			<div> NEW POSTS </div>
-			<div> BOOKMARKED </div>
-			<div> YOUR POSTS </div>
-		</div>
-		-->
-		{% for post in user_posts %}
-		<div style="border-style : solid;border-radius : 8px;border-color: #b5e8ff;">
-			<div class="post_heading">
-			Title :	{{post.post_heading}}
+		<div class="w3-container w3-padding-large">
+			{% for post in user_posts %}
+			<div class="w3-container w3-border w3-round-large w3-border-blue">
+				<div class="w3-container w3-large w3-myfont">
+					<a href="{% url 'showpost' post.id %}">
+						{{post.post_heading}}
+					</a>
+				</div>
+				<div class="w3-container">
+				{{post.post_body}}
+				</div>
+				<!--<img class="expand" src="{% static 'images/expand.jpeg' %}"/> -->
 			</div>
-			<div class="post_body">
-			Body :	{{post.post_body}}
-			</div>
+			{%endfor%}
 		</div>
-		{%endfor%}
 	</body>
 </html>

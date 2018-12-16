@@ -3,9 +3,11 @@
 # Author : Chandan Mahto
 # Date : 25-10-2018
 # Version : 1.0.0
-# Changelog : #v 1.0.0 : +added signup form to enable user signup 
+# Changelog : v 1.0.0 : +added signup form to enable user signup 
 #						 +added login form to enable user login
 #                        +added postform to enable creating and viewing posts
+#			  v 1.1.0 : +added resetform to enable resetting forgotten passwords
+#		              : +added commentform to enable commmenting on posts
 #//************************************************************************//#
 #//************************************************************************//#
 
@@ -23,7 +25,7 @@ class signupform(forms.Form):
 	'''
 	FIRST_NAME = forms.CharField(max_length=30)
 	LAST_NAME = forms.CharField(max_length=30)
-	USERNAME = forms.CharField(max_length=30)
+	USERNAME = forms.CharField(max_length=12)
 	PASSWORD = forms.CharField(max_length=30)
 	EMAIL = forms.CharField(max_length=150)
 
@@ -34,7 +36,7 @@ class loginform(forms.Form):
 		USERNAME = stores the USERNAME of the student
 		PASSWORD = stores the PASSWORD of the student
 	'''
-	USERNAME = forms.CharField(max_length=30)
+	USERNAME = forms.CharField(max_length=12)
 	PASSWORD = forms.CharField(max_length=30)
 
 #//************************************************************************//#
@@ -47,5 +49,16 @@ class postform(forms.Form):
 	POST_HEADING = forms.CharField(max_length=100)
 	POST_BODY = forms.CharField(max_length=300)
 
+#//************************************************************************//#
+
+class commentform(forms.Form):
+	COMMENT_BODY = forms.CharField(max_length=300)
+
+#//************************************************************************//#
+
+class resetform(forms.Form):
+	''' This takes roll of the user 
+	'''
+	USERNAME = forms.CharField(max_length=12)
 #//************************************************************************//#
 #//************************************************************************//#

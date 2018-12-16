@@ -1,117 +1,38 @@
-html,body {
-	margin : 0;
-	padding-top : 1%;
-	width : 100%;
-	background-color : #c9ddff;
+body {
+	background:#c9ddff;
 }
-@media screen and (min-width:769px) {
-	table {
-		border-style : solid;
-		border-radius : 8px;
-		border-color: white;
-		border-width : 2px;
-		background-color:#00e1ff;
-	}
-	table,tr,th,thead,tbody,td {
-		text-align : center;
-		font-size : 1.05em;
-	}
-	input {
-		width : 100%;
-	}
-	#table_header{
-		text-align :center;
-		font-weight : bold;
-		border-bottom : hidden;
-		font-family : comic sans ms;
-		font-size : 2em;
-		padding-left : 30%;
-		color :  #005eff;
-	}
-	.body {
-		display : flex;
-		justify-content : center;
-		align-items : center;
-		padding-top : 10%;
-	}
-	.table_contents {
-		font-family:comic sans ms;
-		padding-bottom:2%;
-		padding-top:2%;
-		padding-left : 2%;
-		padding-right : 2%;
-	}
-	.table_buttons {	
-		width : 80%;
-		min-width : 10%;
-		border-style : none;
-		display : inline-block;
-		min-width : 150px;
-		margin : 3%;
-		padding : 2% 5%;
-		transition-duration : 0.8s;
-		font-size : 1em;
-	}
-	.table_buttons:hover {
-		background-color : #008CBA;
-	}
-	.table_input {
-		border-style:none;
-	}
-	.bottom {
-		padding-top : 5%;
-		font-size : 1.5em;
-		text-align : center;
-	}
+.body {
+	padding-left : 40%;
+	padding-right : 40%;
+	padding-top : 10%;
+	padding-bottom : 5%;
 }
-@media screen and (max-width:768px) {
-	#table_header {
-		text-align :center;
-		font-weight : bold;
-		border-bottom : hidden;
-		font-family : comic sans ms;
-		font-size : 2em;
-		color :  #005eff;
-	}
-	table {
-		border-style : solid;
-		border-radius : 8px;
-		border-color: white;
-		border-width : 2px;
-		background-color:#00e1ff;
-	}
-	table,tr,th,td,thead,tbody {
-		display : block;
-		text-align : center;
-		font-size : 1.05em;
-	}
-	tr {
-		padding-top : 1%;
-	}
-	input {
-		width : 80%;
-		
-	}
-	.table_contents {
-		padding-top:1%;
-		font-size : 1.2em;
-	}
-	.table_buttons{
-		width : 30%;
-		min-width : 150px;
-		border-style : none;
-		display : inline-block;
-		margin : 3%;
-		padding : 2% 5%;
-		transition-duration : 0.8s;
-		font-size : 1em;
-	}
-	.table_buttons:hover {
-		background-color : #008CBA;
-	}
-	.bottom {
-		padding-top : 5%;
-		font-size : 1.5em;
-		text-align : center;
-	}
+table {
+	border-style:solid;
+	border-color: white;
+	border-width:2px;
+	border-radius : 8px;
+}
+#table_header{
+	font-size : 200%;
+	font-family : comic sans ms;
+	color : #005eff;
+	padding-left : 30%;
+	padding-right : 20%;
+	padding-bottom:5%;
+	padding-top:5%;
+}
+.table_contents {
+	font-family:comic sans ms;
+	padding-bottom:2%;
+	padding-top:2%;
+}
+.table_buttons {	
+	padding-left:15%;
+}
+.table_input {
+	border-style:none;
+}
+.bottom {
+	padding-left : 43%;
 }
