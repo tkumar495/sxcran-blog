@@ -1,62 +1,32 @@
-{% load static %}
-<!doctype html>
-<html>
-	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<link rel="stylesheet" type="text/css" href="{%static 'user/dashboard.css'%}"/>
-		<title>
-			Dashboard
-		</title>
-	</head>
-	<body>
-		<div class="flex-header">
-			<div> 
-				<a href="{% url 'dashboard' %}"> 
-					SXCRAN BLOG 
-				</a>
-			</div>
-			<div id="searchbar"> 
-				<form action="" method="post"> 
-					<input type="text" name="searchbox" size="50"/>
-					<input type="submit" name="search" value="Search"/>
-				</form> 
-			</div>
-			<div>
-				<a href="{% url 'makepost' %}"> 
-					CREATE POST
-				</a>
-			</div>
-			<div>
-				<a href="{% url 'dashboard' %}"> 
-					NOTIFICATIONS
-				</a>
-			</div>
-			<div> 
-				<a href="{% url 'profile' %}"> 
-					PROFILE
-				</a>
-			</div>
-			<div>
-				<a href="{% url 'logout' %}"> 
-					LOGOUT
-				</a>
-			</div>
-		</div>
-		<!--<div class="flex-nav">
-			<div> NEW POSTS </div>
-			<div> BOOKMARKED </div>
-			<div> YOUR POSTS </div>
-		</div>
-		-->
+{% extends 'user/default.html' %}
+{% block title %}
+	Dashboard
+{% endblock %}
+{%block head%}
+
+{%endblock%}
+{% block navigation %}
+{% endblock %}
+{% block body %}
+	<div class="container" style="padding-top:100px;">
 		{% for post in user_posts %}
-		<div style="border-style : solid;border-radius : 8px;border-color: #b5e8ff;">
-			<div class="post_heading">
-			Title :	{{post.post_heading}}
-			</div>
-			<div class="post_body">
-			Body :	{{post.post_body}}
-			</div>
+		<div class="row">
+			<div class="col-lg-2 col-md-2 hidden-xs hidden-sm"></div>
+			<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+				<div class="float-right">
+					<i class="fa fa-expand"> </i>
+				</div>
+				<div class="float-left">
+					<i class="far fa-arrow-alt-circle-up"></i>
+					<br>
+					<i class="far fa-arrow-alt-circle-down"></i>
+				</div>
+				<div class="">
+					<h1>{{post.post_heading}}</h1>
+					<h1>{{post.post_body}}</h1>
+				</div>
+				</div>
+			<div class="col-lg-2 col-md-2 hidden-xs hidden-sm"></div>
 		</div>
-		{%endfor%}
-	</body>
-</html>
+		{% endfor %}
+{%endblock%}

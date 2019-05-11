@@ -9,7 +9,7 @@ body {
 		margin : 0;
 		width : 100%;
 		font-family : comic sans ms;
-	}
+}
 @media screen and (max-width:768px) {
 	.index {
 		display : block;
@@ -17,21 +17,22 @@ body {
 		border-width:2px;
 		border-radius:8px;
 		border-style:solid;
-		font-size : 2em;
+		font-size : 3em;
 	}
 	.signup {	
 		display : block;
 		padding-top : 10%;
 		padding-left : 15%;
 		padding-bottom : 5%;
+		font-size : 2em;
 		text-align:center;
 	}
 	footer {
+		padding-top : 20%;
 		float : bottom;
 		display: block;
-		position : fixed;
 		bottom : 0;
-		left : 15%;
+		left : 35%;
 		font-size : 1em;
 		text-align : center;
 	}

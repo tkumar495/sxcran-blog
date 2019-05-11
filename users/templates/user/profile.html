@@ -1,58 +1,25 @@
-{%load static%}
-<!doctype html>
-<html>
-	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<link rel="stylesheet" type="text/css" href = " {% static 'user/profile.css'%}"/>
-		<title>
+{% extends 'user/default.html' %}
+{% block title %}
 			Profile - {{first_name}} {{last_name}}
-		</title>
-	</head>
-	<body>
-		<div class="flex-header">
-			<div> 
-				<a href="{% url 'dashboard' %}"> 
-					SXCRAN BLOG 
-				</a>
-			</div>
-			<div id="searchbar"> 
-				<form action="" method="post"> 
-					<input type="text" name="searchbox" size="50"/>
-					<input type="submit" name="search" value="Search"/>
-				</form> 
-			</div>
-			<div>
-				<a href="{% url 'makepost' %}"> 
-					CREATE POST
-				</a>
-			</div>
-			<div>
-				<a href="{% url 'dashboard' %}"> 
-					NOTIFICATIONS
-				</a>
-			</div>
-			<div> 
-				<a href="{% url 'profile' %}"> 
-					PROFILE
-				</a>
-			</div>
-			<div>
-				<a href="{% url 'logout' %}"> 
-					LOGOUT
-				</a>
-			</div>
-		</div>
-		<div class="outer-container">
-			<div>
-				NAME :  {{first_name}} {{last_name}}
-				<br>
-				USERNAME : {{username}}
-				<br>
-				EMAIL : {{email}}
-			</div>
-			<div>
-				<a href="" id="alert"> CHANGE PASSWORD </a>
-			</div>
-		</div>
-	</body>
-</html>
+{% endblock %}
+{% block head%}
+<style>
+	.content{
+		margin-top : 5%;
+	}
+	.profile{
+		padding:0;
+	}
+</style>
+{%endblock%}
+{% block body%}
+<div class="container-fluid content">
+			 <div class="profile col-lg-4 col-md-4"><img src="https://www.w3schools.com/w3css/img_avatar3.png" width="100%" height="50%"></div>
+			 <div class="profile col-lg-8 col-md-8">
+					 <h1>USERNAME </h1>
+					 <h1>First Name</h1>
+					 <h1>Last Name</h1>
+					 <h1>Display Name</h1>
+					 <h1>Email </h1></div>
+	</div>
+{%endblock%}

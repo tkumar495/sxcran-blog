@@ -1,48 +1,6 @@
-body {
-	margin : 0%;
-	background : #d2eef7;
+.w3-myfont {
+    font-family: "Comic Sans MS", cursive, sans-serif;
 }
 a {
-	text-decoration : none;
-	font : black;
-}
-a:visited {
-	text-decoration : none;
-	font : black;
-}
-textarea {
-	resize:none;
-}
-.flex-header {
-	display : flex;
-	background : #00bfff;
-	flex-wrap : wrap;
-}
-.flex-header > div {
-	padding:1%;
-	font-family : comic sans ms;
-	font-weight: bold;
-}
-.flex-header > div:hover {
-	background : white;
-}
-.flex-nav {
-	display : flex;
-	flex-direction : column;
-	background-color :powderblue;
-	width : 15%;
-}
-.flex-nav > div {
-	padding-left : 30%;
-	padding-top : 2%;
-}
-.flex-container {
-	display : flex;
-}
-.flex-container > div {
-	padding-left : 20%;
-	padding-top : 2;
-}
-#searchbar:hover {
-	background:#00bfff;
+	text-decoration:none;
 }

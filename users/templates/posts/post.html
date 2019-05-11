@@ -1,0 +1,38 @@
+{%extends 'user/default.html'%}
+{% block title %}
+			{{post.post_heading}}
+{% endblock %}
+{% block head %}
+<style>
+	.my-10{
+			margin-top: 30px;
+	}
+	</style>
+{% endblock%}
+{% block body%}
+<div class="jumbotron jumbotron-fluid my-10 px-5">
+        <div class="display-4">
+          {{post.post_heading}}
+				</div>
+    <div class="info">
+        Author : {{post.post_op.first_name}}
+				<br>
+				Time : {{post.post_time}}
+    </div>
+    <div class="display-4">
+        <div class="col-md-12">
+            <p>Paragraph</p>
+        </div>
+    </div>
+</div>
+    <div class="container">
+        <h3>Comments</h3></div>
+    <div class="container">
+        <div class="col-md-4">
+            <p>Paragraph</p>
+        </div>
+        <div class="col-md-8">
+            <p>Paragraph</p>
+        </div>
+    </div>
+{%endblock%}
