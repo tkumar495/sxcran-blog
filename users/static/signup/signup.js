@@ -8,9 +8,9 @@ function password_validate() {
 function roll_validate() {
 	var roll = document.forms['signupform']['USERNAME'].value;
 	var valid = true;
-	if (roll.length != 12) 
+	if (roll.length != 12)
 		valid = false;
-	if (isNaN(roll.match(/^[0-9][0-9]/))) 
+	if (isNaN(roll.match(/^[0-9][0-9]/)))
 		valid = false;
 	if (!isNaN(roll.slice(2,5)))
 		valid = false;

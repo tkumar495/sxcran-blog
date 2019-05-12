@@ -1,39 +1,47 @@
-{% load static %}
-<!doctype html>
-<html>
-	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<link rel="stylesheet" type="text/css" href="{%static 'user/dashboard.css'%}"/>
-		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-		<title>
-			Dashboard
-		</title>
-	</head>
-	<body class="w3-light-grey">
-		<div class="w3-bar w3-blue w3-mobile w3-large w3-border">
-			<a href="{% url 'dashboard' %}" class="w3-bar-item w3-button w3-blue w3-hover-white w3-mobile"> SXCRAN BLOG </a>
-			<input type="text" class="w3-bar-item w3-border w3-input w3-mobile" placeholder="Search..">
-			<a href="#" class="w3-bar-item w3-button w3-blue w3-hover-green w3-mobile"><i class="fa fa-search"></i></a>
-			<a href="{% url 'dashboard' %}" class="w3-bar-item w3-button w3-blue w3-hover-white w3-mobile"> Dashboard </a>
-			<a href="{% url 'dashboard' %}" class="w3-bar-item w3-button w3-blue w3-hover-white w3-mobile"> Notifications </a>
-			<a href="{% url 'profile' %}" class="w3-bar-item w3-button w3-blue w3-hover-white w3-mobile"> Profile </a>
-			<a href="{% url 'logout' %}" class="w3-bar-item w3-button w3-blue w3-hover-white w3-mobile"> Logout </a>
-		</div>
-		<div class="w3-container w3-padding-large">
-			{% for post in user_posts %}
-			<div class="w3-container w3-border w3-round-large w3-border-blue">
-				<div class="w3-container w3-large w3-myfont">
-					<a href="{% url 'showpost' post.id %}">
-						{{post.post_heading}}
-					</a>
+{% extends 'user/default.html' %}
+{% block title %}
+	Dashboard
+{% endblock %}
+{%block head%}
+<style media="screen">
+	.post-heading {
+		font-size : 3rem;
+		color : #000000;
+	}
+	.post-body{
+		font-size : 1.5em;
+	}
+	.fa-arrow-alt-circle-up:hover {
+		color :rgb(40,167,69);
+	}
+	.fa-arrow-alt-circle-down:hover{
+		color : rgb(220,53,69);
+	}
+</style>
+{%endblock%}
+{% block navigation %}
+{% endblock %}
+{% block body %}
+	<div class="container" style="padding-top:100px;">
+		{% for post in user_posts %}
+		<div class="row">
+			<div class="col-lg-2 col-md-2 hidden-xs hidden-sm"></div>
+			<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 border border-primary rounded">
+				<div class="float-right mx-2 my-3 fa-lg">
+					<i class="fa fa-expand "> </i>
 				</div>
-				<div class="w3-container">
-				{{post.post_body}}
+				<div class="float-left mx-2 my-3">
+					<i class="far fa-arrow-alt-circle-up fa-lg"></i>
+					<br>
+					<i class="far fa-arrow-alt-circle-down fa-lg"></i>
+					<br>
 				</div>
-				<!--<img class="expand" src="{% static 'images/expand.jpeg' %}"/> -->
-			</div>
-			{%endfor%}
+				<div class="float-left mx-2">
+					<a class="post-heading text-decoration-none" href="{% url 'showpost' post.id %}">{{post.post_heading}}</a>
+					<h3 class="post-body">{{post.post_body}}</h3>
+				</div>
+				</div>
+			<div class="col-lg-2 col-md-2 hidden-xs hidden-sm"></div>
 		</div>
-	</body>
-</html>
+		{% endfor %}
+{%endblock%}

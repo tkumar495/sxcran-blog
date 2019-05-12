@@ -3,9 +3,9 @@
 # Author : Chandan Mahto
 # Date : 25-10-2018
 # Version : 1.0.0
-# Changelog : #v 1.0.0 : +added profile view to show the details of 
+# Changelog : #v 1.0.0 : +added profile view to show the details of
 #						 logged in user
-#						 +added home view to render the home page of 
+#						 +added home view to render the home page of
 #						 blog
 #						 +added default view to catch all the 'tampered'
 #						 urls
@@ -15,11 +15,11 @@
 #						 +added success view to deal with success in some views
 #						 +added login view to make some use of signup view
 #					     +added logout view to free users from their pain
-#						 +added create_posts view to prevent boredom of users from 
+#						 +added create_posts view to prevent boredom of users from
 #					      clicking the 4 links on the dashboard.
-#						 +added functionality that redirects users to dashboard if 
+#						 +added functionality that redirects users to dashboard if
 #                         user attempts to view login or signup page after logging in
-#			  #v 1.0.1 : users now redirect to dashboard instead of home page if they are 
+#			  #v 1.0.1 : users now redirect to dashboard instead of home page if they are
 #						 logged in.
 #						 +exception handling added for duplicate roll numbers
 #						 +added support for user forgetting their passwords
@@ -32,6 +32,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import signupform, loginform, postform, resetform, commentform
 from django.contrib.auth.models import User
+from django.contrib import messages
 import django.contrib.auth as au
 import datetime
 from django.urls import reverse
@@ -41,7 +42,7 @@ from django.db import IntegrityError
 #//************************************************************************//#
 
 def home(request):
-	''' Renders the home.html file to the user 
+	''' Renders the home.html file to the user
 		if the user is not logged in or the dashboard
 		if the user is logged in
 	'''
@@ -50,19 +51,19 @@ def home(request):
 	return(render(request,'home/home.html'))
 
 #//************************************************************************//#
-	
+
 def default(request,slug):
 	''' renders the home.html file to any wrong
-		request that doesn't map to any other view 
+		request that doesn't map to any other view
 	'''
 	return HttpResponseRedirect(reverse('home'))
 
-#//************************************************************************//#	
+#//************************************************************************//#
 
 def signup(request):
-	''' renders the signup.html file along with 
-		an empty signup form for the user to fill and 
-		send request to create an account. 
+	''' renders the signup.html file along with
+		an empty signup form for the user to fill and
+		send request to create an account.
 	'''
 	if not request.user.is_authenticated:
 		if request.method == 'POST':
@@ -75,7 +76,7 @@ def signup(request):
 					user.first_name = form.cleaned_data['FIRST_NAME']
 					user.last_name = form.cleaned_data['LAST_NAME']
 					user.save()
-					request.session['task'] = "signup" 
+					request.session['task'] = "signup"
 				except (IntegrityError) :
 					request.session['error'] = "duplicate"
 					return HttpResponseRedirect(reverse('error'))
@@ -108,7 +109,8 @@ def dashboard(request):
 	else :
 		return HttpResponseRedirect(reverse('login'))
 	user_posts = posts.objects.all()
-	return render(request, 'user/dashboard.html',{'user_posts' : user_posts})
+	return render(request, 'user/dashboard.html',context = {'user_posts' : user_posts,
+															'current_feed' : True})
 
 #//************************************************************************//#
 
@@ -126,9 +128,8 @@ def success(request):
 		return HttpResponseRedirect(reverse('error'))
 
 #//************************************************************************//#
-
 def login(request):
-	''' performs user login 
+	''' performs user login
 	'''
 	if not request.user.is_authenticated:
 		if request.method == "POST":
@@ -136,10 +137,11 @@ def login(request):
 			if form.is_valid():
 				username = request.POST['USERNAME']
 				password = request.POST['PASSWORD']
+				#keep_logged = request.POST['KEEP_LOGGED']
 				user = au.authenticate(username=username, password=password)
 				if (user is not None):
 					au.login(request,user)
-					request.session['logged'] = True 
+					request.session['logged'] = True
 					return HttpResponseRedirect(reverse('dashboard'))
 				else :
 					return HttpResponseRedirect(reverse('login'))
@@ -197,7 +199,7 @@ def create_posts(request):
 
 def profile(request):
 	''' displays the profile.html containing username, name, roll
-		and department of the logged in user 
+		and department of the logged in user
 	'''
 	if request.user.is_authenticated:
 		first_name = request.user.first_name

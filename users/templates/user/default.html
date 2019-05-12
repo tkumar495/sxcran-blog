@@ -1,0 +1,73 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+      {% block title %}
+      {% endblock %}
+    </title>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    {% block head%}
+    {%endblock%}
+  </head>
+  <body>
+    <div class="container-fluid">
+    	<div class="row">
+    		<div class="col-md-12">
+    			<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+
+    				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+    					<span class="navbar-toggler-icon"></span>
+    				</button> <a class="navbar-brand text-uppercase" href="{% url 'home' %}">Blog</a>
+    				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    					<form class="form-inline mr-lg-2">
+    						<input class="form-control mr-sm-2" type="text" />
+    						<button class="btn btn-primary my-2 my-sm-0" type="submit">
+    							Search
+    						</button>
+    					</form>
+    					<ul class="navbar-nav mr-x-lg-2">
+    						<li class="nav-item {% if current_feed == True %} active {% endif %} mr-lg-3">
+    							 <a class="nav-link " href="{% url 'dashboard' %}">
+                     <i title="Feed" class="far fa-newspaper" style="font-size:25px;padding-bottom:0px;"></i>
+                     <span class="d-lg-none d-md-none mx-auto"> Feed </span>
+                     {% if current_feed == True %}<span class="sr-only">(current)</span>{%endif%}</a>
+    						</li>
+    						<li class="nav-item {% if current_post == True %} active {% endif %} mr-lg-3">
+    							 <a class="nav-link" role="presentation" href="{% url 'makepost' %}">
+                     <i title="Create Post" class="fas fa-plus" style="font-size:25px;padding-bottom:0px;"></i>
+                     <span class="d-lg-none d-md-none mx-auto"> Create Post </span>
+                     {% if current_post == True %}<span class="sr-only">(current)</span>{%endif%}</a>
+    						</li>
+                <li class="nav-item {% if current_profile == True %} active {% endif %}  mr-lg-3">
+      							 <a class="nav-link" role="presentation" href="{% url 'profile' %}">
+                       <i title="Profile" class="far fa-user-circle" style="font-size:25px;"></i>
+                       <span class="d-lg-none d-md-none mx-auto"> Profile </span>
+                       {% if current_profile == True %}<span class="sr-only">(current)</span>{%endif%}</a>
+      					</li>
+    					</ul>
+    					<ul class="navbar-nav ml-md-auto">
+    						<li class="nav-item">
+    							 <a class="nav-link" role="presentation" href="{% url 'logout' %}">
+                     <i class="fas fa-sign-out-alt" title="Logout" style="font-size:25px;"></i>
+                   <span class="d-lg-none d-md-none mx-auto"> Logout </span>
+                 </a>
+    						</li>
+    					</ul>
+    				</div>
+    			</nav>
+    		</div>
+    	</div>
+    </div>
+    {% block body %}
+    {%endblock%}
+  </body>
+</html>

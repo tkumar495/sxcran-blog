@@ -1,64 +1,31 @@
-{%load static%}
-<!doctype html>
-<html>
-	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<link rel="stylesheet" type="text/css" href="{% static 'user/dashboard.css' %}"/>
-		<title>
-			New Post
-		</title>
-	</head>
-	<body>
-		<div class="flex-header">
-			<div> 
-				<a href="{% url 'dashboard' %}"> 
-					SXCRAN BLOG 
-				</a>
-			</div>
-			<div id="searchbar"> 
-				<form action="" method="post"> 
-					<input type="text" name="searchbox" size="50"/>
-					<input type="submit" name="search" value="Search"/>
-				</form> 
-			</div>
-			<div>
-				<a href="{% url 'makepost' %}"> 
-					CREATE POST
-				</a>
-			</div>
-			<div>
-				<a href="{% url 'dashboard' %}"> 
-					NOTIFICATIONS
-				</a>
-			</div>
-			<div> 
-				<a href="{% url 'profile' %}"> 
-					PROFILE
-				</a>
-			</div>
-			<div>
-				<a href="{% url 'logout' %}"> 
-					LOGOUT
-				</a>
-			</div>
-		</div>
-		<div class="flex-container">
+{%extends 'user/default.html'%}
+{% block title %}
+New Post
+{% endblock %}
+{% block head%}
+<style>
+	#newpostcontainer {
+		padding-top: 100px;
+	}
+</style>
+{% endblock%}
+{% block body%}
+		<div class="container" id="newpostcontainer">
 			<div>
 				<form action="{% url 'makepost' %}" method="post">
 					{%csrf_token%}
-					Title 
-					<br> 
-					<textarea type="text" name="POST_HEADING" maxlength="150" rows="1" cols="100" placeholder="Enter a title" required></textarea>
+					Title
 					<br>
-					Body 
-					<br> 
-					<textarea type="text" name="POST_BODY" maxlength="1000" rows="10" cols="100" placeholder="Enter the body" required></textarea>
+					<textarea class="form-control" type="text" name="POST_HEADING" maxlength="150" rows="1" cols="100" placeholder="Enter a title" required></textarea>
+					<br>
+					Body
+					<br>
+					<textarea class="form-control" type="text" name="POST_BODY" maxlength="1000" rows="10" cols="100" placeholder="Enter the body" required></textarea>
 					<br>
 					<br>
-					<input type="submit" value="post">
-					<input type="reset" value="reset">
+					<input class="btn btn-success" type="submit" value="post">
+					<input class="btn btn-danger" type="reset" value="reset">
 				</form>
 			</div>
 		</div>
-	</body>
-</html>
+{%endblock%}

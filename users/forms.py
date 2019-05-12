@@ -3,7 +3,7 @@
 # Author : Chandan Mahto
 # Date : 25-10-2018
 # Version : 1.0.0
-# Changelog : v 1.0.0 : +added signup form to enable user signup 
+# Changelog : v 1.0.0 : +added signup form to enable user signup
 #						 +added login form to enable user login
 #                        +added postform to enable creating and viewing posts
 #			  v 1.1.0 : +added resetform to enable resetting forgotten passwords
@@ -38,6 +38,7 @@ class loginform(forms.Form):
 	'''
 	USERNAME = forms.CharField(max_length=12)
 	PASSWORD = forms.CharField(max_length=30)
+	#KEEP_LOGGED = forms.BooleanField()
 
 #//************************************************************************//#
 
@@ -57,7 +58,7 @@ class commentform(forms.Form):
 #//************************************************************************//#
 
 class resetform(forms.Form):
-	''' This takes roll of the user 
+	''' This takes roll of the user
 	'''
 	USERNAME = forms.CharField(max_length=12)
 #//************************************************************************//#

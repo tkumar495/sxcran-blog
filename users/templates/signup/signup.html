@@ -6,84 +6,39 @@
 						: +added link to login page
 				v 1.1.0	: +added responsiveness
 -->
-<!doctype html>
-<html>
+<html lang="en" dir="ltr">
 	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<link rel="stylesheet" type="text/css" href="{% static 'signup/signup.css' %}"/>
-		<script src="{% static 'signup/signup.js' %}"> </script> 
-		<title>
-			SXCRAN ORG - SIGNUP
-		</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title> Sign In </title>
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	</head>
+	<style>
+			.my-10{
+				margin-top:150px;
+			}
+		</style>
 	<body>
-		<div class="body">
+		<div class="container">
+			<div class="col-lg-4 col-md-3 d-xs-none d-sm-none"></div>
+			<div class="col-md-6 col-lg-4 col-sm-12 col-xs-12 mx-auto my-10">
 			<form name="signupform" action = "{% url 'signup' %}" onsubmit="return validate()" method="post">
 				{%csrf_token%}
-				<table>
-					<tr>
-						<div id="table_header">
-							SIGNUP
-						</div>
-					</tr>
-					<tr>
-						<td class="table_contents">
-							EXAM ROLL NO
-						</td>
-						<td class="table_contents">
-							<input name ="USERNAME" type="text" maxlength="12" size="25" required class="table_input">
-						</td>
-					</tr>
-					<tr>
-						<td class="table_contents">
-							FIRST NAME 
-						</td>
-						<td class="table_contents">
-							<input name = "FIRST_NAME" type="text" maxlength="20" size="25" required class="table_input">
-						</td>
-					<tr>
-						<td class="table_contents">
-							LAST NAME 
-						</td>
-						<td class="table_contents">
-							<input name = "LAST_NAME" type="text" maxlength="20" size="25" required class="table_input">
-						</td>
-					</tr>
-					<tr>
-						<td class="table_contents">
-							EMAIL
-						</td>
-						<td class="table_contents">
-							<input name = "EMAIL" type="email" size="25" required class="table_input"v>
-						</td>
-					<tr>
-						<td class="table_contents">
-							PASSWORD 
-						</td>
-						<td class="table_contents">
-							<input name = "PASSWORD" type="password" size="25" maxlength="16" required class="table_input">
-						</td>
-					<tr>
-						<td class="table_contents">
-							PASSWORD AGAIN 
-						</td>
-						<td class="table_contents">
-							<input name = "PASSWORD2" type="password" size="25" size="25" maxlength="16" required class="table_input">
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<input class="table_button" type="submit" value="SIGNUP">
-						</td>
-						<td>
-							<input class="table_button" type="reset" value="CLEAR">
-						</td>
-					</tr>
-					</table>
+				<input class="form-control my-2" name="USERNAME" placeholder="Username / Roll" type="text" required autofocus>
+				<input class="form-control my-2" name="EMAIL" placeholder="Email" type="text" required>
+				<input class="form-control my-2" name="FIRST_NAME" placeholder="First Name" type="text" required>
+				<input class="form-control my-2" name="LAST_NAME" placeholder="Last Name" type="text" required>
+				<input class="form-control my-2" name="PASSWORD" placeholder="Password" type="password" required>
+				<input class="form-control my-2" name="PASSWORD2" placeholder="Password Again" type="password" required>
+				<input class="btn btn-primary w-100" type="submit" value="Sign Up">
 			</form>
 		</div>
-		<div class="bottom">
-			Already have an account? <br>Click here to <a href="{% url 'login' %}"> login. </a>
-		</div>
+		<div class="col-lg-4 col-md-3 d-xs-none d-sm-none"></div>
 	</body>
 </html>
