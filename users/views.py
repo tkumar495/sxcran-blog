@@ -29,14 +29,14 @@
 #//************************************************************************//#
 
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from .forms import signupform, loginform, postform, resetform, commentform
 from django.contrib.auth.models import User
 from django.contrib import messages
 import django.contrib.auth as au
 import datetime
 from django.urls import reverse
-from .models import posts, comments
+from .models import posts, comments, post_votes
 from django.db import IntegrityError
 
 #//************************************************************************//#
@@ -144,7 +144,8 @@ def login(request):
 					request.session['logged'] = True
 					return HttpResponseRedirect(reverse('dashboard'))
 				else :
-					return HttpResponseRedirect(reverse('login'))
+					messages.error(request,'username or password not correct')
+					return redirect('login')
 		else :
 			form = loginform()
 		return(render(request,'signup/login.html'))
@@ -254,4 +255,22 @@ def show_post(request, post_id):
 	except :
 		return render(request, 'posts/post.html', {'post' : post, 'post_comments': None})
 	return render(request,'posts/post.html', {'post': post, 'post_comments' : comment})
+
+#//************************************************************************//#
+
+def upvote_post(request):
+	''' Used to upvote the posts
+	'''
+	print ("this function was called")
+	post_id = request.GET.get('post_id',None)
+	upvoted = request.GET.get('upvoted',None)
+	post = posts.objects.get(id=post_id)
+	pv = post_time(user_id = request.user, post_vote = post, upvoted = upvoted)
+	pv.save()
+	data = {
+		'upvotes' : post.post_upvotes,
+		'upvoted' : pv.upvoted
+	}
+	return JsonResponse(data)
+
 #//************************************************************************//#

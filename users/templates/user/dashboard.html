@@ -3,7 +3,40 @@
 	Dashboard
 {% endblock %}
 {%block head%}
+<style media="screen">
+	.post-heading {
+		font-size : 3rem;
+		color : #000000;
+	}
+	.post-body{
+		font-size : 1.5em;
+	}
+	.fa-arrow-alt-circle-up:hover {
+		color :rgb(40,167,69);
+	}
+	.fa-arrow-alt-circle-down:hover{
+		color : rgb(220,53,69);
+	}
+</style>
+<script type="text/javascript">
+		$("#upvotearrow").click(function(){
+			$.alert('We reach here')
+			var post_id = $(this).attr('post');
+			var upvoted = true;
 
+			$.ajax({
+				url :'{% url 'upvotepost' %}',
+				data : {
+					'post_id' : post_id,
+					'upvoted' : upvoted
+				},
+				dataType : 'json',
+				success : function(data){
+					$('#post-upvotes').html(data.upvotes);
+				}
+			});
+		});
+</script>
 {%endblock%}
 {% block navigation %}
 {% endblock %}
@@ -12,18 +45,21 @@
 		{% for post in user_posts %}
 		<div class="row">
 			<div class="col-lg-2 col-md-2 hidden-xs hidden-sm"></div>
-			<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-				<div class="float-right">
-					<i class="fa fa-expand"> </i>
+			<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 border border-primary rounded">
+				<div class="float-right mx-2 my-3 fa-lg">
+					<i class="fa fa-expand "> </i>
 				</div>
-				<div class="float-left">
-					<i class="far fa-arrow-alt-circle-up"></i>
+				<div class="float-left mx-2 my-3">
+					<i id="upvotearrow" class="far fa-arrow-alt-circle-up fa-lg" post={{post.id}}></i>
 					<br>
-					<i class="far fa-arrow-alt-circle-down"></i>
+					<span id="post-upvotes" class="mx-2">{{post.post_upvotes}}</span>
+					<br>
+					<i class="far fa-arrow-alt-circle-down fa-lg"></i>
+					<br>
 				</div>
-				<div class="">
-					<h1>{{post.post_heading}}</h1>
-					<h1>{{post.post_body}}</h1>
+				<div class="float-left mx-2">
+					<a class="post-heading text-decoration-none" href="{% url 'showpost' post.id %}">{{post.post_heading}}</a>
+					<h3 class="post-body">{{post.post_body}}</h3>
 				</div>
 				</div>
 			<div class="col-lg-2 col-md-2 hidden-xs hidden-sm"></div>

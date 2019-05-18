@@ -40,9 +40,13 @@
   					</div>
 						<input class="btn btn-primary w-100" type="submit" value="Sign in">
 				 </form>
-				 <div class="card border-danger my-5 font-weight-bold p-2 text-danger" id="errortext" hidden>
-					 		Incorrect Username or Password
-				 </div>
+				 {% for message in messages %}
+									<div class="alert alert-danger my-2">
+											<a class="close" href="#" data-dismiss="alert">×</a>
+											{{ message }}
+
+									</div>
+					{% endfor %}
 			 </div>
 			 <div class="col-lg-4 col-md-3 d-xs-none d-sm-none"></div>
 	 </div>

@@ -31,6 +31,7 @@ urlpatterns = [
 	path('logout/', user_views.logout, name="logout"),
 	path('resetpassword/',user_views.reset_password, name="resetpassword"),
 	path('posts/<int:post_id>',user_views.show_post, name="showpost"),
+    path(r'^ajax/upvotepost/$', user_views.upvote_post, name='upvotepost'),
 	path('<path:slug>', user_views.default, name="default"),
 ]
 urlpatterns += staticfiles_urlpatterns()

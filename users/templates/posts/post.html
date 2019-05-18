@@ -7,6 +7,9 @@
 	.my-10{
 			margin-top: 30px;
 	}
+	.display-5{
+		font-size : 1.5em;
+	}
 	</style>
 {% endblock%}
 {% block body%}
@@ -19,20 +22,38 @@
 				<br>
 				Time : {{post.post_time}}
     </div>
-    <div class="display-4">
-        <div class="col-md-12">
-            <p>Paragraph</p>
-        </div>
+		<hr>
+    <div class="display-5">
+            <p>{{post.post_body}}</p>
     </div>
 </div>
-    <div class="container">
-        <h3>Comments</h3></div>
-    <div class="container">
-        <div class="col-md-4">
-            <p>Paragraph</p>
+    <div class="container mx-4	">
+        <h3>Comments</h3>
+		</div>
+		<div class="col-lg-4"></div>
+		<div class="container mx-4 col-lg-8">
+        <form name="COMMENT_FORM" action="{% url 'showpost' post.id%}" method="post">
+					{% csrf_token %}
+					<div class="input-group mb-3">
+        	<input type="text" name="COMMENT_BODY" class="form-control" placeholder="Write something nice">
+					<div class="input-group-append">
+    				<button class="btn btn-outline-secondary" type="submit">comment</button>
+  				</div>
+					</div>
+        </form>
+		</div>
+		<div class="col-lg-4"></div>
+		{% for co in post_comments %}
+		<div class="container">
+        <div class="col-md-2 col-sm-2 col-xs-4"><img class="hidden-xs" alt="Profile Picture">
+            <p>{{co.comment_op.first_name}}</p>
         </div>
-        <div class="col-md-8">
-            <p>Paragraph</p>
+        <div class="col-md-6 col-sm-6 col-xs-8">
+            <p>{{co.comment_body}} </p>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-8 col-xs-offset-4">
+            <p>{{co.comment_time}} </p>
         </div>
     </div>
+		{% endfor %}
 {%endblock%}
